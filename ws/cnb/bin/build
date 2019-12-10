@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+echo "---> Ruby buildpack"
+exit 1
+

@@ -1,0 +1,13 @@
+# api version
+api = "0.2"
+
+[buildpack]
+id = "com.example.buildpack.ruby"
+version = "0.0.1"
+name = "Ruby buildpack"
+
+[[stacks]]
+id = "heroku-18"
+
+[[stacks]]
+id = "org.cloudfoundry.stacks.cflinuxfs3"
