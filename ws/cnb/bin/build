@@ -23,3 +23,5 @@ gem install bundler --no-ri --no-rdoc
 
 echo "---> Installing gems"
 bundle install
+
+echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
