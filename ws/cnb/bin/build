@@ -2,5 +2,24 @@
 set -eo pipefail
 
 echo "---> Ruby buildpack"
-exit 1
 
+layersdir=$1
+
+echo "---> Downloading and extracting Ruby"
+rubylayer="$layersdir"/ruby
+mkdir -p "$rubylayer"
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
+
+
+echo -e 'launch = true' > "$rubylayer.toml"
+
+export PATH="$rubylayer"/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
+
+
+echo "---> Installing bundler"
+gem install bundler --no-ri --no-rdoc
+
+echo "---> Installing gems"
+bundle install
