@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-exit 1
+if [[ ! -f Gemfile ]]; then
+  ext 100
+fi
+
